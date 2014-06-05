@@ -44,7 +44,6 @@ public class PianoLayout extends View {
 
 	// TODO Presently there is only a fixed number of keys (24), arranged
 	// in two sections, spanning octaves 3 and 4 (i.e. range = C3..B4)
-	// TODO Change orientation when width > height
 	// TODO Use the touch pressure values to choose between sound pools "pp", "mf" and "ff" 
 	
 	// list of formerly pressed keys
@@ -367,7 +366,7 @@ public class PianoLayout extends View {
 		}
 	}
 
-	// Release resources
+	// Free resources
 	public void destroy() {
 		if (pianoBitmap != null) {
 			pianoBitmap.recycle(); // mark the bitmap as dead
