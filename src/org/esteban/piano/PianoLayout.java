@@ -42,8 +42,7 @@ import android.view.WindowManager;
 
 public class PianoLayout extends View {
 
-	// TODO Presently there is only a fixed number of keys (24), arranged
-	// in two sections, spanning octaves 3 and 4 (i.e. range = C3..B4)
+	// TODO Let the user choose the octave for each row
 	// TODO Use the touch pressure values to choose between sound pools "pp", "mf" and "ff" 
 	
 	// list of formerly pressed keys
@@ -236,49 +235,57 @@ public class PianoLayout extends View {
 	// Create shapes
 	private void createShapes() {
 		// Define the shapes
+		// ___
+		// |  |
+		// |  |_ 
+		// |    |
+		// |____|
 		//
-		// ________________
-		// |      _________|
-		// |_____|
-		//
-		asymCFWhiteKey.lineTo((float) pianoWidth / 2, 0.0f);
-		asymCFWhiteKey.lineTo((float) pianoWidth / 2, (float) pianoHeight * 17 / 168);
-		asymCFWhiteKey.lineTo((float) pianoWidth / 4, (float) pianoHeight * 17 / 168);
-		asymCFWhiteKey.lineTo((float) pianoWidth / 4, (float) pianoHeight / 7);
-		asymCFWhiteKey.lineTo(0.0f, (float) pianoHeight / 7);
+		asymCFWhiteKey.moveTo(0.0f, 0.0f);
+		asymCFWhiteKey.lineTo((float) pianoWidth * 17 / 168, 0.0f);
+		asymCFWhiteKey.lineTo((float) pianoWidth * 17 / 168, (float) pianoHeight / 4);
+		asymCFWhiteKey.lineTo((float) pianoWidth / 7, (float) pianoHeight / 4);
+		asymCFWhiteKey.lineTo((float) pianoWidth / 7, (float) pianoHeight / 2);
+		asymCFWhiteKey.lineTo(0.0f, (float) pianoHeight / 2);
 		asymCFWhiteKey.lineTo(0.0f, 0.0f);
+		//    __
+		//   |  |
+		//  _|  | 
+		// |    |
+		// |____|
 		//
-		// ______
-		// |     |_________
-		// |_______________|
+		asymEBWhiteKey.moveTo((float) pianoWidth / 24, 0.0f);
+		asymEBWhiteKey.lineTo((float) pianoWidth / 7, 0.0f);
+		asymEBWhiteKey.lineTo((float) pianoWidth / 7, (float) pianoHeight / 2);
+		asymEBWhiteKey.lineTo(0.0f, (float) pianoHeight / 2);
+		asymEBWhiteKey.lineTo(0.0f, (float) pianoHeight / 4);
+		asymEBWhiteKey.lineTo((float) pianoWidth / 24, (float) pianoHeight / 4);
+		asymEBWhiteKey.lineTo((float) pianoWidth / 24, 0.0f);
+		asymEBWhiteKey.offset((float) pianoWidth * 2 / 7, 0.0f);
+		//  __
+		// |  |
+		// |  |
+		// |__|
 		//
-		asymEBWhiteKey.lineTo((float) pianoWidth / 4, 0.0f);
-		asymEBWhiteKey.lineTo((float) pianoWidth / 4, (float) pianoHeight / 24);
-		asymEBWhiteKey.lineTo((float) pianoWidth / 2, (float) pianoHeight / 24);
-		asymEBWhiteKey.lineTo((float) pianoWidth / 2, (float) pianoHeight / 7);
-		asymEBWhiteKey.lineTo(0.0f, (float) pianoHeight / 7);
-		asymEBWhiteKey.lineTo(0.0f, 0.0f);
-		asymEBWhiteKey.offset(0.0f, (float) pianoHeight * 2 / 7);
-		// __________
-		// |_________|
+		blackKey.addRect(0.0f, 0.0f, (float) pianoWidth / 12, (float) pianoHeight / 4, Path.Direction.CW);
+		blackKey.offset((float) pianoWidth * 17 / 168, 0.0f);
 		//
-		blackKey.addRect(0.0f, 0.0f, (float) pianoWidth / 4, (float) pianoHeight / 12, Path.Direction.CW);
-		blackKey.offset((float) pianoWidth / 4, (float) pianoHeight * 17 / 168);
+		//    __
+		//   |  |
+		//  _|  |_
+		// |      |
+		// |______|
 		//
-		// ______
-		// |     |_________
-		// |      _________|
-		// |_____|
-		//
-		symmetricWhiteKey.lineTo((float) pianoWidth / 4, 0.0f);
-		symmetricWhiteKey.lineTo((float) pianoWidth / 4, (float) pianoHeight / 24);
-		symmetricWhiteKey.lineTo((float) pianoWidth / 2, (float) pianoHeight / 24);
-		symmetricWhiteKey.lineTo((float) pianoWidth / 2, (float) pianoHeight * 17 / 168);
-		symmetricWhiteKey.lineTo((float) pianoWidth / 4, (float) pianoHeight * 17 / 168);
-		symmetricWhiteKey.lineTo((float) pianoWidth / 4, (float) pianoHeight / 7);
-		symmetricWhiteKey.lineTo(0.0f, (float) pianoHeight / 7);
-		symmetricWhiteKey.lineTo(0.0f, 0.0f);
-		symmetricWhiteKey.offset(0.0f, (float) pianoHeight / 7);
+		symmetricWhiteKey.moveTo((float) pianoWidth / 24, 0.0f);
+		symmetricWhiteKey.lineTo((float) pianoWidth * 17 / 168, 0.0f);
+		symmetricWhiteKey.lineTo((float) pianoWidth * 17 / 168, (float) pianoHeight / 4);
+		symmetricWhiteKey.lineTo((float) pianoWidth / 7, (float) pianoHeight / 4);
+		symmetricWhiteKey.lineTo((float) pianoWidth / 7, (float) pianoHeight / 2);
+		symmetricWhiteKey.lineTo(0.0f, (float) pianoHeight / 2);
+		symmetricWhiteKey.lineTo(0.0f, (float) pianoHeight / 4);
+		symmetricWhiteKey.lineTo((float) pianoWidth / 24, (float) pianoHeight / 4);
+		symmetricWhiteKey.lineTo((float) pianoWidth / 24, 0.0f);
+		symmetricWhiteKey.offset((float) pianoWidth / 7, 0.0f);
 		// Save the shapes as keys
 		for (int i = 0; i < (numberOfNotes / 2); i++) {
 			if (blackKeyNoteNumbers.contains(i)) {
@@ -287,52 +294,52 @@ public class PianoLayout extends View {
 				case 3: // D# = Eb
 				case 8: // G# = Ab 
 				case 10: // A# = Bb
-					blackKey.offset(0.0f, (float) pianoHeight / 7);
+					blackKey.offset((float) pianoWidth / 7, 0.0f);
 					break;
 				case 6: // F# = Gb
-					blackKey.offset(0.0f, (float) pianoHeight * 2 / 7);
+					blackKey.offset((float) pianoWidth * 2 / 7, 0.0f);
 					break;
 				}
 				keys.get(i).set(blackKey);
-				blackKey.offset((float) pianoWidth / 2, 0.0f);
+				blackKey.offset(0.0f, (float) pianoHeight / 2);
 				keys.get(i + 12).set(blackKey);
-				blackKey.offset((float) -pianoWidth / 2, 0.0f);
+				blackKey.offset(0.0f, (float) -pianoHeight / 2);
 			} else {
 				// White keys
 				if ((i == 0) || (i == 5)) {
 					// CF key
 					if (i == 5) { // F
-						asymCFWhiteKey.offset(0.0f, (float) pianoHeight * 3 / 7);
+						asymCFWhiteKey.offset((float) pianoWidth * 3 / 7, 0.0f);
 					}
 					keys.get(i).set(asymCFWhiteKey);
-					asymCFWhiteKey.offset((float) pianoWidth / 2, 0.0f);
+					asymCFWhiteKey.offset(0.0f, (float) pianoHeight / 2);
 					keys.get(i + 12).set(asymCFWhiteKey);
-					asymCFWhiteKey.offset((float) -pianoWidth / 2, 0.0f);
+					asymCFWhiteKey.offset(0.0f, (float) -pianoHeight / 2);
 				}
 				if ((i == 2) || (i == 7) || (i == 9)) {
 					// symmetric key
 					switch (i) {
 					case 7: // G
-						symmetricWhiteKey.offset(0.0f, (float) pianoHeight * 3 / 7);
+						symmetricWhiteKey.offset((float) pianoWidth * 3 / 7, 0.0f);
 						break;
 					case 9: // A
-						symmetricWhiteKey.offset(0.0f, (float) pianoHeight / 7);
+						symmetricWhiteKey.offset((float) pianoWidth / 7, 0.0f);
 						break;
 					}
 					keys.get(i).set(symmetricWhiteKey);
-					symmetricWhiteKey.offset((float) pianoWidth / 2, 0.0f);
+					symmetricWhiteKey.offset(0.0f, (float) pianoHeight / 2);
 					keys.get(i + 12).set(symmetricWhiteKey);
-					symmetricWhiteKey.offset((float) -pianoWidth / 2, 0.0f);					
+					symmetricWhiteKey.offset(0.0f, (float) -pianoHeight / 2);					
 				}
 				if ((i == 4) || (i == 11)) {
 					// EB key
 					if (i == 11) { // B
-						asymEBWhiteKey.offset(0.0f, (float) pianoHeight * 4 / 7);
+						asymEBWhiteKey.offset((float) pianoWidth * 4 / 7, 0.0f);
 					}
 					keys.get(i).set(asymEBWhiteKey);
-					asymEBWhiteKey.offset((float) pianoWidth / 2, 0.0f);
+					asymEBWhiteKey.offset(0.0f, (float) pianoHeight / 2);
 					keys.get(i + 12).set(asymEBWhiteKey);
-					asymEBWhiteKey.offset((float) -pianoWidth / 2, 0.0f);
+					asymEBWhiteKey.offset(0.0f, (float) -pianoHeight / 2);
 				}
 			}
 		}
