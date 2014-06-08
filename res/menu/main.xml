@@ -3,5 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="org.esteban.piano.MainActivity" >
 
+    <item 
+        android:id="@+id/option1"
+        android:title="@string/option1"
+        />
 
 </menu>

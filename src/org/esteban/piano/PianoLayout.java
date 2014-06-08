@@ -33,17 +33,14 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.media.AudioManager;
 import android.media.SoundPool;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 
 public class PianoLayout extends View {
 
 	// TODO Let the user choose the octave for each row
-	// TODO Use the touch pressure values to choose between sound pools "pp", "mf" and "ff" 
+	// TODO Let the user decide if the sound must stop when the key is released
 	
 	// list of formerly pressed keys
 	private static Set<Integer> old_pressed;
@@ -104,19 +101,7 @@ public class PianoLayout extends View {
 				blackKeyNoteNumbers.add(Integer.valueOf(i));
 			}
 		}
-		// Get view dimensions (fixed)
-		Display display = ((WindowManager) 
-				context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-		DisplayMetrics dm = new DisplayMetrics();
-		display.getMetrics(dm);
-		pianoWidth = dm.widthPixels;
-		pianoHeight = dm.heightPixels;
-		// Create key shapes and assign them to the keys array
-		createShapes();
-		// Create canvas and its associated bitmap
 		pianoCanvas = new Canvas();
-		pianoBitmap = Bitmap.createBitmap(pianoWidth, pianoHeight, Bitmap.Config.ARGB_8888);
-		pianoCanvas.setBitmap(pianoBitmap);
 	}
 
 	// Draw on canvas, from bitmap
@@ -381,5 +366,19 @@ public class PianoLayout extends View {
 		if (pianoSounds != null) {
 			pianoSounds.release(); // release the sound pool resources
 		}
+	}
+	
+	// Deal with view size changes
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		if (pianoBitmap != null) {
+			pianoBitmap.recycle(); // mark the bitmap as dead
+		}
+		pianoWidth = w;
+		pianoHeight = h;
+		pianoBitmap = Bitmap.createBitmap(pianoWidth, pianoHeight, Bitmap.Config.ARGB_8888);
+		pianoCanvas.setBitmap(pianoBitmap);
+		this.createShapes();
+		this.drawOnBitmap();
 	}
 }

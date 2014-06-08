@@ -4,5 +4,6 @@
     <string name="app_name">Piano</string>
     <string name="action_settings">Settings</string>
     <string name="keyboard_image_color">Colored music keyboard image</string>
+    <string name="option1">Settings</string>
     
 </resources>

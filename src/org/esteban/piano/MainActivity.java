@@ -26,6 +26,8 @@ package org.esteban.piano;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -54,5 +56,13 @@ public class MainActivity extends Activity {
 		super.onDestroy();
 		
 		pianoView.destroy();
+	}
+	
+	// Initialize options menu contents
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return true;
 	}
 }
