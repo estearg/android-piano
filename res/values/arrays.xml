@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_octaves_entries">
+        <item>@string/pref_octaves_lower_octave_in_upper_row</item>
+        <item>@string/pref_octaves_higher_octave_in_upper_row</item>
+    </string-array>
+    <string-array name="pref_octaves_values">
+        <item>@string/pref_octaves_lower_octave_in_upper_row_value</item>
+        <item>@string/pref_octaves_higher_octave_in_upper_row_value</item>
+    </string-array>
+    <string-array name="pref_damper_entries">
+        <item>@string/pref_damper_dampen</item>
+        <item>@string/pref_damper_sustain</item>
+    </string-array>
+    <string-array name="pref_damper_values">
+        <item>@string/pref_damper_dampen_value</item>
+        <item>@string/pref_damper_sustain_value</item>
+    </string-array>
+</resources>
