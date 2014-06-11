@@ -120,7 +120,8 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		if (key.equals("pref_damper")) {
-			damper = sharedPreferences.getString(key, "");
+			damper = sharedPreferences.getString(key,
+					this.getString(R.string.pref_damper_default_value));
 		}
 		if (key.equals("pref_octaves")) {
 			// See if the preference was really changed or just the dialog shown
@@ -299,7 +300,8 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 				}
 			}
 			// Stop the sound of released keys
-			if (damper == getString(R.string.pref_damper_dampen_value)) {
+			if (damper.equals(
+					MainActivity.this.getString(R.string.pref_damper_dampen_value))) {
 				Set<Integer> just_released = new HashSet<Integer>(old_pressed);
 				just_released.removeAll(new_pressed);
 				it = just_released.iterator();
