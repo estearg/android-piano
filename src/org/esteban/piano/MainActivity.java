@@ -67,16 +67,16 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 	protected String damper; // boolean preferred, but no boolean array resource possible
 	// Preference data interface
 	protected static SharedPreferences sharedPreferences;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		// Load preferences. The following:
 //		sharedPreferences = getSharedPreferences("Piano", Activity.MODE_PRIVATE); // if the file doesn't exist it'll be created when retrieving an editor and commiting changes
 		// ...didn't call the on change listener. So:
 		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-		
 		// Save preferences into variables
 		lowerOctavePosition = sharedPreferences.getString("pref_octaves",
 				this.getString(R.string.pref_octaves_default_value));
@@ -88,6 +88,7 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		// Always portrait orientation
+		// NOTE: <activity ...  android:configChanges="orientation|screenSize" ... >
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		// Set view
 		pianoView = new PianoLayout(this.getApplicationContext());
