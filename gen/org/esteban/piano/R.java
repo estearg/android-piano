@@ -11,8 +11,10 @@ public final class R {
     public static final class array {
         public static final int pref_damper_entries=0x7f060002;
         public static final int pref_damper_values=0x7f060003;
-        public static final int pref_octaves_entries=0x7f060000;
-        public static final int pref_octaves_values=0x7f060001;
+        public static final int pref_octaves_entries=0x7f060004;
+        public static final int pref_octaves_values=0x7f060005;
+        public static final int pref_rows_entries=0x7f060000;
+        public static final int pref_rows_values=0x7f060001;
     }
     public static final class attr {
     }
@@ -60,13 +62,25 @@ public final class R {
         public static final int note21=0x7f05000e;
         public static final int note22=0x7f05000f;
         public static final int note23=0x7f050010;
-        public static final int note3=0x7f050011;
-        public static final int note4=0x7f050012;
-        public static final int note5=0x7f050013;
-        public static final int note6=0x7f050014;
-        public static final int note7=0x7f050015;
-        public static final int note8=0x7f050016;
-        public static final int note9=0x7f050017;
+        public static final int note24=0x7f050011;
+        public static final int note25=0x7f050012;
+        public static final int note26=0x7f050013;
+        public static final int note27=0x7f050014;
+        public static final int note28=0x7f050015;
+        public static final int note29=0x7f050016;
+        public static final int note3=0x7f050017;
+        public static final int note30=0x7f050018;
+        public static final int note31=0x7f050019;
+        public static final int note32=0x7f05001a;
+        public static final int note33=0x7f05001b;
+        public static final int note34=0x7f05001c;
+        public static final int note35=0x7f05001d;
+        public static final int note4=0x7f05001e;
+        public static final int note5=0x7f05001f;
+        public static final int note6=0x7f050020;
+        public static final int note7=0x7f050021;
+        public static final int note8=0x7f050022;
+        public static final int note9=0x7f050023;
     }
     public static final class string {
         public static final int action_settings=0x7f080001;
@@ -79,12 +93,20 @@ public final class R {
         public static final int pref_damper_sustain=0x7f08000c;
         public static final int pref_damper_sustain_value=0x7f08000e;
         public static final int pref_damper_title=0x7f08000a;
-        public static final int pref_octaves_default_value=0x7f080009;
-        public static final int pref_octaves_higher_octave_in_upper_row=0x7f080006;
-        public static final int pref_octaves_higher_octave_in_upper_row_value=0x7f080008;
-        public static final int pref_octaves_lower_octave_in_upper_row=0x7f080005;
-        public static final int pref_octaves_lower_octave_in_upper_row_value=0x7f080007;
-        public static final int pref_octaves_title=0x7f080004;
+        public static final int pref_octaves_34=0x7f080011;
+        public static final int pref_octaves_34_value=0x7f080014;
+        public static final int pref_octaves_35=0x7f080013;
+        public static final int pref_octaves_35_value=0x7f080016;
+        public static final int pref_octaves_45=0x7f080012;
+        public static final int pref_octaves_45_value=0x7f080015;
+        public static final int pref_octaves_default_value=0x7f080017;
+        public static final int pref_octaves_title=0x7f080010;
+        public static final int pref_rows_default_value=0x7f080009;
+        public static final int pref_rows_higher_octave_in_upper_row=0x7f080006;
+        public static final int pref_rows_higher_octave_in_upper_row_value=0x7f080008;
+        public static final int pref_rows_lower_octave_in_upper_row=0x7f080005;
+        public static final int pref_rows_lower_octave_in_upper_row_value=0x7f080007;
+        public static final int pref_rows_title=0x7f080004;
     }
     public static final class style {
         /** 

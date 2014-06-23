@@ -65,6 +65,7 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 	// Preference variables
 	protected String lowerOctavePosition;
 	protected String damper; // boolean preferred, but no boolean array resource possible
+	protected String octaves;
 	// Preference data interface
 	protected static SharedPreferences sharedPreferences;
 	
@@ -78,17 +79,18 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 		// Save preferences into variables
-		lowerOctavePosition = sharedPreferences.getString("pref_octaves",
-				this.getString(R.string.pref_octaves_default_value));
+		lowerOctavePosition = sharedPreferences.getString("pref_rows",
+				this.getString(R.string.pref_rows_default_value));
 		damper = sharedPreferences.getString("pref_damper",
 				this.getString(R.string.pref_damper_default_value));
+		octaves = sharedPreferences.getString("pref_octaves",
+				this.getString(R.string.pref_octaves_default_value));
 
 		// Show the view in full screen mode without title
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		// Always portrait orientation
-		// NOTE: <activity ...  android:configChanges="orientation|screenSize" ... >
+		// Set preferred orientation
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		// Set view
 		pianoView = new PianoLayout(this.getApplicationContext());
@@ -124,16 +126,58 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 			damper = sharedPreferences.getString(key,
 					this.getString(R.string.pref_damper_default_value));
 		}
-		if (key.equals("pref_octaves")) {
+		if (key.equals("pref_rows")) {
 			// See if the preference was really changed or just the dialog shown
 			if (!(lowerOctavePosition.equals(sharedPreferences.getString(key,
-					this.getString(R.string.pref_octaves_default_value))))) {
+					this.getString(R.string.pref_rows_default_value))))) {
 				// Update variable
 				lowerOctavePosition = sharedPreferences.getString(key,
-					this.getString(R.string.pref_octaves_default_value));
+					this.getString(R.string.pref_rows_default_value));
 				// Swap rows
 				for (int i = 0; i < (pianoView.numberOfNotes / 2); i++) {
 					Collections.swap(pianoView.keys, i, i + 12);
+				}
+			}
+		}
+		if (key.equals("pref_octaves")) {
+			// See if the preference was really changed or just the dialog shown
+			if (!(octaves.equals(sharedPreferences.getString(key,
+					this.getString(R.string.pref_octaves_default_value))))) {
+				// Update variable
+				octaves = sharedPreferences.getString(key,
+					this.getString(R.string.pref_octaves_default_value));
+				// Release old sounds and clear their identifications
+				for (int id : pianoView.soundIds) {
+					pianoView.pianoSounds.unload(id);
+				}
+				pianoView.soundIds.clear();
+				// Load new sounds and save their identifications
+				for (int i = 0; i < pianoView.numberOfNotes; i++) {
+					int resourceId;
+					if (octaves.equals(this.getString(R.string.pref_octaves_34_value))) {
+						resourceId = this.getApplicationContext().getResources().
+								getIdentifier("note"
+										+ i,
+										"raw", this.getApplicationContext().getPackageName());
+						pianoView.soundIds.add(pianoView.pianoSounds.load(
+								this.getApplicationContext(), resourceId, 1));
+					}
+					if (octaves.equals(MainActivity.this.getString(R.string.pref_octaves_45_value))) {
+						resourceId = this.getApplicationContext().getResources().
+								getIdentifier("note"
+								+ Integer.toString(i + 12),
+										"raw", this.getApplicationContext().getPackageName());
+						pianoView.soundIds.add(pianoView.pianoSounds.load(
+								this.getApplicationContext(), resourceId, 1));
+					}
+					if (octaves.equals(MainActivity.this.getString(R.string.pref_octaves_35_value))) {
+						resourceId = this.getApplicationContext().getResources().
+								getIdentifier("note"
+								+ Integer.toString(i + (i / 12) * 12),
+										"raw", this.getApplicationContext().getPackageName());
+						pianoView.soundIds.add(pianoView.pianoSounds.load(
+								this.getApplicationContext(), resourceId, 1));
+					}
 				}
 			}
 		}
@@ -184,13 +228,31 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 			soundIds = new ArrayList<Integer>();
 			playIds = new ArrayList<Integer>();
 			for (int i = 0; i < numberOfNotes; i++) {
+				int resourceId;
 				// Load the sound of each note, saving the identifications
-				int resourceId = context.getResources().getIdentifier("note" + i,
-						"raw", context.getPackageName()); // audio files saved as res/raw/note0.ogg etc.
-				soundIds.add(pianoSounds.load(context, resourceId, 1));
+				// (audio files saved as res/raw/note0.ogg etc.)
+				if (octaves.equals(MainActivity.this.getString(R.string.pref_octaves_34_value))) {
+					resourceId = context.getResources().getIdentifier("note"
+							+ Integer.toString(i),
+							"raw", context.getPackageName());
+					soundIds.add(pianoSounds.load(context, resourceId, 1));
+				}
+				if (octaves.equals(MainActivity.this.getString(R.string.pref_octaves_45_value))) {
+					resourceId = context.getResources().getIdentifier("note"
+							+ Integer.toString(i + 12),
+							"raw", context.getPackageName());
+					soundIds.add(pianoSounds.load(context, resourceId, 1));
+				}
+				if (octaves.equals(MainActivity.this.getString(R.string.pref_octaves_35_value))) {
+					resourceId = context.getResources().getIdentifier("note"
+							+ Integer.toString(i + (i / 12) * 12),
+							"raw", context.getPackageName());
+					soundIds.add(pianoSounds.load(context, resourceId, 1));
+				}
 				playIds.add(null);
-				// Create key objects and record the note numbers of the black keys
+				// Create key objects
 				keys.add(new Path());
+				// Record the note numbers of the black keys
 				switch (i % 12) {
 				case 1:
 				case 3:
@@ -433,7 +495,7 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 			// Exchange rows depending on preference
 			if (lowerOctavePosition.equals(
 					MainActivity.this.getString(
-							R.string.pref_octaves_higher_octave_in_upper_row_value))) {
+							R.string.pref_rows_higher_octave_in_upper_row_value))) {
 				// Swap rows
 				for (int i = 0; i < (pianoView.numberOfNotes / 2); i++) {
 					Collections.swap(pianoView.keys, i, i + 12);

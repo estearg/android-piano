@@ -2,12 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <ListPreference 
-        android:key="pref_octaves"
-        android:title="@string/pref_octaves_title"
-        android:dialogTitle="@string/pref_octaves_title"
-        android:entries="@array/pref_octaves_entries"
-        android:entryValues="@array/pref_octaves_values"
-        android:defaultValue="@string/pref_octaves_default_value"
+        android:key="pref_rows"
+        android:title="@string/pref_rows_title"
+        android:dialogTitle="@string/pref_rows_title"
+        android:entries="@array/pref_rows_entries"
+        android:entryValues="@array/pref_rows_values"
+        android:defaultValue="@string/pref_rows_default_value"
         />
 
     <ListPreference 
@@ -17,6 +17,15 @@
         android:entries="@array/pref_damper_entries"
         android:entryValues="@array/pref_damper_values"
         android:defaultValue="@string/pref_damper_sustain_value"
+        />
+
+    <ListPreference 
+        android:key="pref_octaves"
+        android:title="@string/pref_octaves_title"
+        android:dialogTitle="@string/pref_octaves_title"
+        android:entries="@array/pref_octaves_entries"
+        android:entryValues="@array/pref_octaves_values"
+        android:defaultValue="@string/pref_octaves_default_value"
         />
     
 </PreferenceScreen>

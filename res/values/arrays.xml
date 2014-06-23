@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="pref_octaves_entries">
-        <item>@string/pref_octaves_lower_octave_in_upper_row</item>
-        <item>@string/pref_octaves_higher_octave_in_upper_row</item>
+    <string-array name="pref_rows_entries">
+        <item>@string/pref_rows_lower_octave_in_upper_row</item>
+        <item>@string/pref_rows_higher_octave_in_upper_row</item>
     </string-array>
-    <string-array name="pref_octaves_values">
-        <item>@string/pref_octaves_lower_octave_in_upper_row_value</item>
-        <item>@string/pref_octaves_higher_octave_in_upper_row_value</item>
+    <string-array name="pref_rows_values">
+        <item>@string/pref_rows_lower_octave_in_upper_row_value</item>
+        <item>@string/pref_rows_higher_octave_in_upper_row_value</item>
     </string-array>
     <string-array name="pref_damper_entries">
         <item>@string/pref_damper_dampen</item>
@@ -15,5 +15,15 @@
     <string-array name="pref_damper_values">
         <item>@string/pref_damper_dampen_value</item>
         <item>@string/pref_damper_sustain_value</item>
+    </string-array>
+    <string-array name="pref_octaves_entries">
+        <item>@string/pref_octaves_34</item>
+        <item>@string/pref_octaves_45</item>
+        <item>@string/pref_octaves_35</item>
+        </string-array>
+    <string-array name="pref_octaves_values">
+        <item>@string/pref_octaves_34_value</item>
+        <item>@string/pref_octaves_45_value</item>
+        <item>@string/pref_octaves_35_value</item>
     </string-array>
 </resources>

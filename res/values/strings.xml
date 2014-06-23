@@ -5,17 +5,25 @@
     <string name="action_settings">Settings</string>
     <string name="keyboard_image_color">Colored music keyboard image</string>
     <string name="option1">Settings</string>
-    <string name="pref_octaves_title">Octaves</string>
-    <string name="pref_octaves_lower_octave_in_upper_row">Lower octave in upper row</string>
-    <string name="pref_octaves_higher_octave_in_upper_row">Higher octave in upper row</string>
-    <string name="pref_octaves_lower_octave_in_upper_row_value">lower up</string>
-    <string name="pref_octaves_higher_octave_in_upper_row_value">higher up</string>
-    <string name="pref_octaves_default_value">@string/pref_octaves_lower_octave_in_upper_row_value</string>
+    <string name="pref_rows_title">Rows</string>
+    <string name="pref_rows_lower_octave_in_upper_row">Lower octave in upper row</string>
+    <string name="pref_rows_higher_octave_in_upper_row">Higher octave in upper row</string>
+    <string name="pref_rows_lower_octave_in_upper_row_value">lower up</string>
+    <string name="pref_rows_higher_octave_in_upper_row_value">higher up</string>
+    <string name="pref_rows_default_value">@string/pref_rows_lower_octave_in_upper_row_value</string>
     <string name="pref_damper_title">Damper</string>
     <string name="pref_damper_dampen">Stop sound when key is released</string>
     <string name="pref_damper_sustain">Let the note ring after key is released</string>
     <string name="pref_damper_dampen_value">dampen</string>
     <string name="pref_damper_sustain_value">sustain</string>
     <string name="pref_damper_default_value">@string/pref_damper_sustain_value</string>
+    <string name="pref_octaves_title">Octaves</string>
+    <string name="pref_octaves_34">Octaves 3 &amp; 4</string>
+    <string name="pref_octaves_45">Octaves 4 &amp; 5</string>
+    <string name="pref_octaves_35">Octaves 3 &amp; 5</string>
+    <string name="pref_octaves_34_value">34</string>
+    <string name="pref_octaves_45_value">45</string>
+    <string name="pref_octaves_35_value">35</string>
+    <string name="pref_octaves_default_value">@string/pref_octaves_34_value</string>
     
 </resources>
