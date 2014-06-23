@@ -26,4 +26,12 @@
         <item>@string/pref_octaves_45_value</item>
         <item>@string/pref_octaves_35_value</item>
     </string-array>
+    <string-array name="pref_orient_entries">
+        <item>@string/pref_orient_landscape</item>
+        <item>@string/pref_orient_portrait</item>
+        </string-array>
+    <string-array name="pref_orient_values">
+        <item>@string/pref_orient_landscape_value</item>
+        <item>@string/pref_orient_portrait_value</item>
+    </string-array>
 </resources>

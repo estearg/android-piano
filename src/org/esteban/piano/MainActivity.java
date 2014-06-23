@@ -66,6 +66,7 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 	protected String lowerOctavePosition;
 	protected String damper; // boolean preferred, but no boolean array resource possible
 	protected String octaves;
+	protected String orientation;
 	// Preference data interface
 	protected static SharedPreferences sharedPreferences;
 	
@@ -85,13 +86,20 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 				this.getString(R.string.pref_damper_default_value));
 		octaves = sharedPreferences.getString("pref_octaves",
 				this.getString(R.string.pref_octaves_default_value));
+		orientation = sharedPreferences.getString("pref_orient",
+				this.getString(R.string.pref_orient_default_value));
 
 		// Show the view in full screen mode without title
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		// Set preferred orientation
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		if (orientation.equals(this.getString(R.string.pref_orient_landscape_value))) {
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		}
+		if (orientation.equals(this.getString(R.string.pref_orient_portrait_value))) {
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		}
 		// Set view
 		pianoView = new PianoLayout(this.getApplicationContext());
 		setContentView(pianoView);
@@ -179,6 +187,18 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 								this.getApplicationContext(), resourceId, 1));
 					}
 				}
+			}
+		}
+		if (key.equals("pref_orient")) {
+			// Update variable
+			orientation = sharedPreferences.getString(key,
+					this.getString(R.string.pref_orient_default_value));
+			// Set preferred screen orientation
+			if (orientation.equals(this.getString(R.string.pref_orient_landscape_value))) {
+				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+			}
+			if (orientation.equals(this.getString(R.string.pref_orient_portrait_value))) {
+				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 			}
 		}
 	}

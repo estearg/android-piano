@@ -13,6 +13,8 @@ public final class R {
         public static final int pref_damper_values=0x7f060003;
         public static final int pref_octaves_entries=0x7f060004;
         public static final int pref_octaves_values=0x7f060005;
+        public static final int pref_orient_entries=0x7f060006;
+        public static final int pref_orient_values=0x7f060007;
         public static final int pref_rows_entries=0x7f060000;
         public static final int pref_rows_values=0x7f060001;
     }
@@ -101,6 +103,12 @@ public final class R {
         public static final int pref_octaves_45_value=0x7f080015;
         public static final int pref_octaves_default_value=0x7f080017;
         public static final int pref_octaves_title=0x7f080010;
+        public static final int pref_orient_default_value=0x7f08001d;
+        public static final int pref_orient_landscape=0x7f080019;
+        public static final int pref_orient_landscape_value=0x7f08001b;
+        public static final int pref_orient_portrait=0x7f08001a;
+        public static final int pref_orient_portrait_value=0x7f08001c;
+        public static final int pref_orient_title=0x7f080018;
         public static final int pref_rows_default_value=0x7f080009;
         public static final int pref_rows_higher_octave_in_upper_row=0x7f080006;
         public static final int pref_rows_higher_octave_in_upper_row_value=0x7f080008;
