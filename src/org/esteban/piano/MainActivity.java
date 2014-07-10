@@ -48,6 +48,7 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -68,7 +69,10 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 	protected String octaves;
 	protected String orientation;
 	// Preference data interface
-	protected static SharedPreferences sharedPreferences;
+	static SharedPreferences sharedPreferences;
+	// Flags to detect key presses
+	private boolean upPressed;
+	private boolean downPressed;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +93,12 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		orientation = sharedPreferences.getString("pref_orient",
 				this.getString(R.string.pref_orient_default_value));
 
+		// Make volume button always control just the media volume
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
+		// Flags initialization
+		upPressed = false;
+		downPressed = false;
+		
 		// Show the view in full screen mode without title
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -203,6 +213,44 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		}
 	}
 
+	// Respond to special key press combination when there is no hardware menu key to show the menu
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		// Set flags according to key presses and releases
+		if (event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP) {
+			if (event.getAction() == KeyEvent.ACTION_DOWN) {
+				upPressed = true;
+			}
+			if (event.getAction() == KeyEvent.ACTION_UP) {
+				upPressed = false;
+			}
+		}
+		if (event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_DOWN) {
+			if (event.getAction() == KeyEvent.ACTION_DOWN) {
+				downPressed = true;
+			}
+			if (event.getAction() == KeyEvent.ACTION_UP) {
+				downPressed = false;
+			}
+		}
+		// Show the options menu when both volume keys are pressed and there is no hardware menu key
+		if ((upPressed == true) && (downPressed == true)
+// hasPermanentMenuKey is only available from API 14
+//				&&
+//				!(ViewConfiguration.get(this.getApplicationContext()).hasPermanentMenuKey())
+				) {
+			// reset flags
+			upPressed = false;
+			downPressed = false;
+			// show the menu
+			this.openOptionsMenu();
+			// return
+			return true;
+		}
+		
+		return super.dispatchKeyEvent(event);
+	}
+
 	public class PianoLayout extends View {
 		// a Paint object is needed to be able to draw anything
 		private Paint pianoPaint;
@@ -280,6 +328,9 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 				case 8:
 				case 10:
 					blackKeyNoteNumbers.add(Integer.valueOf(i));
+					break;
+				default:
+					break;
 				}
 			}
 			pianoCanvas = new Canvas();
@@ -468,6 +519,8 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 					case 6: // F# = Gb
 						blackKey.offset((float) pianoWidth * 2 / 7, 0.0f);
 						break;
+					default:
+						break;
 					}
 					keys.get(i).set(blackKey);
 					blackKey.offset(0.0f, (float) pianoHeight / 2);
@@ -493,6 +546,8 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 							break;
 						case 9: // A
 							symmetricWhiteKey.offset((float) pianoWidth / 7, 0.0f);
+							break;
+						default:
 							break;
 						}
 						keys.get(i).set(symmetricWhiteKey);
