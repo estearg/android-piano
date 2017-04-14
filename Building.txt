@@ -1,0 +1,11 @@
+Using free software.
+
+Download link for Replicant SDK 4.0:
+https://ftp.osuosl.org/pub/replicant/sdk/replicant-4.0/0001/sdk/replicant-sdk_linux-x86.zip
+
+Environment:
+Add to PATH the Replicant SDK directories called tools and platform-tools.
+
+Commands to build from command line:
+android update project --path . --subprojects --target android-15 --name Piano
+ant <debug|release|etc...>

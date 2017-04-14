@@ -30,7 +30,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -56,6 +55,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnSharedPreferenceChangeListener {
 
@@ -349,7 +349,6 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 
 		// React when the user touches, stops touching, or touches in a new way,
 		// the piano keyboard
-		@SuppressLint("UseSparseArrays")
 		public boolean onTouchEvent(MotionEvent event){
 			// React only to some actions, ignoring the others
 			int action = event.getAction();
@@ -628,6 +627,10 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 			pianoCanvas.setBitmap(pianoBitmap);
 			this.createShapes();
 			this.drawOnBitmap();
+            // Inform the user about the key combination to access the menu
+            // (because the keyboard takes up the whole screen)
+            Toast.makeText(MainActivity.this.getApplicationContext(), "Vol" + "\u2191" + "+" + "Vol" + "\u2193" + " " + "\u2192" + " menu",
+                            Toast.LENGTH_LONG).show();
 		}
 	}
 }

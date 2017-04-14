@@ -1,0 +1,39 @@
+Con el archivo abierto en Audacity:
+
+	Ctrl+Shift+F
+
+	Effect -> Normalize (remove DC offset, normalize to 0 dB, normalize stereo channels independently)
+
+	J
+
+	Ctrl+1 unas 4 veces, hasta ver sólo los primeros 2 segundos más o menos
+
+	Shift+Right hasta seleccionar el silencio inicial pero dejando un cachito
+
+	Delete
+
+	Cursor en 2 segundos
+
+	Shift+K
+
+	Delete
+
+	J
+
+	Ctrl+F
+
+	Desplegar menú de la pista haciendo click en la flecha
+
+	Waveform (dB)
+
+	Escuchar
+
+	Effect -> Fade Out, escuchar y así. Resulta aplicado 2 veces casi siempre, si no siempre
+
+	Shift+Ctrl+E (o File -> Export Audio...)
+
+	Agregar extensión .wav
+
+	Guardar en directorio apropiado
+
+	Ctrl+W -> No
