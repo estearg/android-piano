@@ -1,3 +1,3 @@
-/home/esteban/android-piano-master/bin/Piano-release-unsigned.apk : \
-/home/esteban/android-piano-master/bin/Piano.ap_ \
-/home/esteban/android-piano-master/bin/classes.dex \
+/home/esteban/Piano/bin/Piano-release-unsigned.apk : \
+/home/esteban/Piano/bin/Piano.ap_ \
+/home/esteban/Piano/bin/classes.dex \
