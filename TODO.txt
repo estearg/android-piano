@@ -1,0 +1,6 @@
+- Use
+ final float MotionEvent.getPressure(int pointerIndex)
+ in the View's
+ public boolean onTouchEvent(MotionEvent event)
+ method to modulate the sounds according to pressure.
+
