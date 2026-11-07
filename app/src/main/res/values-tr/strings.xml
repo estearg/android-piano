@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Harika Piyano</string>
+    <string name="home_subtitle">Ekranınızda piyano çalın</string>
+    <string name="home_open_piano">Piyanoyu aç</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="option1">Ayarlar</string>
+
+    <string name="home_sound_title">Ses</string>
+    <string name="instrument_piano">Klasik piyano</string>
+    <string name="instrument_organ">Org</string>
+    <string name="instrument_epiano">Elektrik piyano</string>
+    <string name="instrument_musicbox">Müzik kutusu</string>
+    <string name="instrument_harpsichord">Klavsen</string>
+
+    <string name="piano_hint">Ses+ ve Ses− birlikte → ana sayfa</string>
+    <string name="keyboard_image_color">Renkli müzik klavyesi görseli</string>
+    <string name="pref_rows_title">Sıralar</string>
+    <string name="pref_rows_lower_octave_in_upper_row">Alt oktav üst sırada</string>
+    <string name="pref_rows_higher_octave_in_upper_row">Üst oktav üst sırada</string>
+    <string name="pref_damper_title">Sönümleme</string>
+    <string name="pref_damper_dampen">Tuş bırakılınca ses dursun</string>
+    <string name="pref_damper_sustain">Tuş bırakılınca nota çalmaya devam etsin</string>
+    <string name="pref_octaves_title">Oktavlar</string>
+    <string name="pref_octaves_34">Oktav 3 ve 4</string>
+    <string name="pref_octaves_45">Oktav 4 ve 5</string>
+    <string name="pref_octaves_35">Oktav 3 ve 5</string>
+    <string name="pref_orient_title">Ekran yönü</string>
+    <string name="pref_orient_landscape">Yatay</string>
+    <string name="pref_orient_portrait">Dikey</string>
+
+    <string name="pref_notes_title">Nota isimlerini göster</string>
+    <string name="pref_notes_summary">Her tuşun üzerine nota adını yaz</string>
+
+</resources>

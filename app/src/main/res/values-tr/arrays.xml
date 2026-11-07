@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="note_names">
+        <item>Do</item><item>Do#</item><item>Re</item><item>Re#</item><item>Mi</item><item>Fa</item>
+        <item>Fa#</item><item>Sol</item><item>Sol#</item><item>La</item><item>La#</item><item>Si</item>
+    </string-array>
+</resources>

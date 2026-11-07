@@ -1,12 +1,7 @@
 #!/bin/bash
-
-n=0
-
-for i in 3 4 5
-do
-	for j in C Db D Eb E F Gb G Ab A Bb B
-	do
-		cp "Converted audio files"/Piano.mf.$j$i.ogg res/raw/note$n.ogg
-		let n=$n+1
-	done
-done
+# Regenerates res/raw/note0..35.wav (48 kHz, -3 dBFS headroom, faded tails)
+# from the lossless files in "Processed audio files".
+# Usage: ./copy-and-rename-audio-files.sh
+set -e
+cd "$(dirname "$0")"
+python3 -I make-48k-wav.py app/src/main/res/raw
