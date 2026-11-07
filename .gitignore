@@ -1,0 +1,11 @@
+# build outputs and secrets: never commit these
+release/
+Piano-debug.apk
+Piano-debug.apk.idsig
+*.jks
+*.keystore
+sifre.txt
+.gradle/
+build/
+app/build/
+local.properties
